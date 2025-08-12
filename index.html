@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书 Markdown 工具</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="background-container"></div>
+    <div class="container">
+        <header>
+            <h1>小红书 Markdown 笔记</h1>
+            <div class="theme-switcher">
+                <label for="theme-select">选择主题:</label>
+                <select id="theme-select">
+                    <option value="clean_white">杂志风</option>
+                    <option value="pink_note">小红书风</option>
+                    <option value="handdrawn_stickers">手帐风</option>
+                    <option value="center_quote">金句语录风</option>
+                    <option value="theme_bg_1">秋叶水彩</option>
+                    <option value="theme_bg_2">浅蓝素描</option>
+                    <option value="theme_bg_3">粉彩花卉</option>
+                    <option value="theme_bg_4">绿植素描</option>
+                    <option value="theme_bg_5">米色素描</option>
+                    <option value="theme_bg_6">文艺素描</option>
+                    <option value="theme_bg_7">清新卡通</option>
+                </select>
+                <button id="download-btn">下载图片</button>
+            </div>
+        </header>
+        <main>
+            <textarea id="markdown-input" placeholder="在这里输入你的 Markdown..."></textarea>
+            <div class="resizer" id="resizer"></div>
+            <div id="html-output" class="preview-area"></div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
