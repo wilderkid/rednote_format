@@ -27,16 +27,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const preview = document.getElementById('html-output');
         const background = document.getElementById('background-container');
 
-        // --- Final Strategy: dom-to-image-more ---
+        // --- 增强版宽度计算: 考虑实际内容宽度和溢出 ---
+        const computedStyle = window.getComputedStyle(preview);
+        const paddingLeft = parseFloat(computedStyle.paddingLeft);
+        const paddingRight = parseFloat(computedStyle.paddingRight);
 
-        // 1. Create a wrapper to composite the final image.
+        // 计算实际内容宽度 (取可视宽度和滚动宽度的最大值，确保捕获所有内容)
+        const contentWidth = Math.max(
+            preview.clientWidth, 
+            preview.scrollWidth - paddingLeft - paddingRight
+        );
+
+        // 最终捕获宽度需要加上padding
+        const captureWidth = contentWidth + paddingLeft + paddingRight;
+        const captureHeight = preview.scrollHeight;
+
+        // 1. 创建一个包装器来合成最终图像
         const captureWrapper = document.createElement('div');
         Object.assign(captureWrapper.style, {
             position: 'absolute',
             left: '-9999px',
             top: '0',
-            width: `${preview.offsetWidth}px`,
-            height: `${preview.scrollHeight}px`,
+            width: `${captureWidth}px`,
+            height: `${captureHeight}px`,
+            overflow: 'hidden', // 确保内容不会溢出
         });
 
         // 2. Clone the background and content nodes.
@@ -51,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         Object.assign(contentClone.style, {
             position: 'absolute', top: '0', left: '0',
             width: '100%', height: '100%',
+            overflow: 'visible', // 确保内容不被裁剪
+            boxSizing: 'border-box', // 确保宽度计算包含padding
         });
 
         // 4. Assemble the layers.
@@ -61,10 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(captureWrapper);
 
         try {
-            // 6. Use domtoimage.toPng to capture the composed element.
+            // 6. 使用domtoimage.toPng捕获组合元素，确保足够宽度
             const dataUrl = await domtoimage.toPng(captureWrapper, {
-                width: captureWrapper.offsetWidth,
-                height: captureWrapper.offsetHeight,
+                width: captureWidth,
+                height: captureHeight,
+                style: {
+                    // 确保渲染时保留所有内容
+                    'transform': 'none',
+                    'width': `${captureWidth}px`,
+                    'min-width': `${captureWidth}px`,
+                    'max-width': 'none',
+                }
             });
 
             // 7. Trigger download.

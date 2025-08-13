@@ -1,10 +1,13 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f7f7f7;
+    background-color: #f8f9fa;
     color: #333;
     margin: 0;
     padding: 20px;
+    transition: background-color 0.5s ease;
+    min-height: 100vh;
+    font-size: 16px;
 }
 
 #background-container {
@@ -34,7 +37,14 @@ body {
     margin: 20px auto;
     background: transparent;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
 }
 
 header {
@@ -42,16 +52,53 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(222, 222, 222, 0.5);
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    transition: all 0.3s ease;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+header:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin: 0;
+    background: linear-gradient(135deg, #ff7676 0%, #f54ea2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+h1:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    height: 3px;
+    background: linear-gradient(135deg, #ff7676 0%, #f54ea2 100%);
+    border-radius: 3px;
+    transform: scaleX(0.8);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+h1:hover:after {
+    transform: scaleX(1);
+    opacity: 1;
 }
 
 main {
@@ -59,49 +106,145 @@ main {
     /* New 3-column layout: input, resizer, preview */
     grid-template-columns: 1fr 10px 2fr;
     height: 80vh; /* Set height on the parent grid container */
+    gap: 0;
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
 }
 
 .resizer {
     background-color: #e0e0e0;
     cursor: col-resize;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+    margin: 15px 0;
 }
 
 .resizer:hover {
-    background-color: #c0c0c0;
+    background-color: #ff7676;
+    box-shadow: 0 0 8px rgba(255, 118, 118, 0.5);
+}
+
+.resizer::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+}
+
+.resizer:hover::before {
+    height: 50px;
+    background-color: white;
 }
 
 #markdown-input {
     width: 100%;
     /* height is now controlled by the parent grid */
-    padding: 15px;
-    border: 1px solid rgba(221, 221, 221, 0.8);
-    border-radius: 8px;
-    font-size: 14px;
-    resize: both;
+    padding: 20px;
+    border: none;
+    border-radius: 12px 0 0 12px;
+    font-size: 16px;
+    line-height: 1.7;
+    resize: none;
     overflow: auto;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.85);
+    outline: none;
+    font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    color: #444;
 }
 
 #markdown-input:focus {
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    border-color: #aaa;
+    box-shadow: inset 0 2px 15px rgba(0,0,0,0.05);
     background-color: rgba(255, 255, 255, 0.95);
+    color: #222;
+}
+
+#markdown-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+#markdown-input:focus::placeholder {
+    opacity: 0.4;
 }
 
 .preview-area {
-    border: 1px solid rgba(221, 221, 221, 0.8);
-    padding: 20px;
-    border-radius: 8px;
+    border: none;
+    padding: 30px;
+    border-radius: 0 12px 12px 0;
     /* height is now controlled by the parent grid */
     overflow: auto;
-    resize: both;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    resize: none;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
     background-color: rgba(255, 255, 255, 0.7);
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    max-width: 100%; /* 确保不超出父容器 */
+    width: 100%; /* 占满可用空间 */
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.preview-area::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.preview-area::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.02);
+    border-radius: 4px;
+}
+
+.preview-area::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.preview-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,0.2);
+}
+
+.preview-area h1, .preview-area h2, .preview-area h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+}
+
+.preview-area p {
+    margin-bottom: 1.2em;
+}
+
+.preview-area img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.preview-area img:hover {
+    transform: scale(1.01);
+}
+
+.preview-area blockquote {
+    border-left: 4px solid #f54ea2;
+    padding: 10px 20px;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 0 8px 8px 0;
 }
 
 /* Keyword highlighting */
@@ -111,40 +254,7 @@ main {
 
 /* --- THEMES --- */
 
-/* Theme: Clean White */
-.clean_white-theme .preview-area {
-    background-color: #ffffff;
-    color: #333333;
-    font-family: 'Georgia', 'Times New Roman', serif;
-}
-.clean_white-theme .preview-area h1, .clean_white-theme .preview-area h2 { color: #000000; }
-.clean_white-theme .preview-area .keyword { background-color: #f0f0f0; color: #000; }
-
-/* Theme: Pink Note */
-.pink_note-theme .preview-area {
-    background-color: #fff5f7;
-    border-color: #ff69b4;
-    font-family: 'Comic Sans MS', 'Chalkduster', 'cursive';
-}
-.pink_note-theme .preview-area h1, .pink_note-theme .preview-area h2 { color: #d9367e; }
-.pink_note-theme .preview-area .keyword { color: #ff1493; border-bottom: 2px dashed #ff69b4; }
-
-/* Theme: Handdrawn Stickers */
-.handdrawn_stickers-theme .preview-area {
-    background-color: #fdfd96;
-    border-color: #ccc;
-    font-family: 'Permanent Marker', 'cursive';
-}
-.handdrawn_stickers-theme .preview-area h1 { transform: rotate(-2deg); }
-.handdrawn_stickers-theme .preview-area .keyword { background-color: #77ff77; box-shadow: 2px 2px 0px #aaa; }
-
-/* Theme: Center Quote */
-.center_quote-theme .preview-area {
-    background-color: #f0f8ff;
-    text-align: center;
-}
-.center_quote-theme .preview-area h1, .center_quote-theme .preview-area h2, .center_quote-theme .preview-area p { color: #4682b4; }
-.center_quote-theme .preview-area .keyword { color: #ff6347; background: none; border-bottom: 3px solid #ff6347; }
+/* --- All themes are now background themes --- */
 
 /* --- Background Image Themes --- */
 
@@ -168,30 +278,1322 @@ main {
 }
 
 /* Text color adjustments for each background theme */
-.theme_bg_1-theme .preview-area { color: #3D2B1F; }
-.theme_bg_1-theme .preview-area h1, .theme_bg_1-theme .preview-area h2 { color: #D2691E; }
-.theme_bg_1-theme .preview-area .keyword { background-color: rgba(255, 99, 71, 0.7); color: white; padding: 2px 6px; border-radius: 4px; }
+/* Theme_bg_1: 秋叶水彩 - 增强版 */
+.theme_bg_1-theme .preview-area { 
+    color: #4A2C2A; 
+    font-family: "方正清刻本悦宋简体", "宋体", "SimSun", serif;
+    letter-spacing: 0.5px;
+}
 
-.theme_bg_2-theme .preview-area { color: #333; }
-.theme_bg_2-theme .preview-area h1, .theme_bg_2-theme .preview-area h2 { color: #007BFF; }
-.theme_bg_2-theme .preview-area .keyword { color: #0056b3; border-bottom: 2px solid #ADD8E6; }
+/* 标题样式 */
+.theme_bg_1-theme .preview-area h1 {
+    color: #B94E1B;
+    background-image: linear-gradient(to right, rgba(216, 140, 81, 0.4), rgba(216, 140, 81, 0));
+    padding: 15px 20px;
+    border-left: 5px solid #C85A1A;
+    font-family: "华文行楷", "楷体", "KaiTi", cursive;
+    position: relative;
+    margin-bottom: 1.5em;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
 
-.theme_bg_3-theme .preview-area { color: #556B2F; }
-.theme_bg_3-theme .preview-area h1, .theme_bg_3-theme .preview-area h2 { color: #FF69B4; }
-.theme_bg_3-theme .preview-area .keyword { background-color: rgba(255, 182, 193, 0.8); padding: 2px 6px; border-radius: 4px; }
+.theme_bg_1-theme .preview-area h1::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    height: 2px;
+    width: 50%;
+    background: linear-gradient(to right, #C85A1A, transparent);
+}
 
-.theme_bg_4-theme .preview-area { color: #2F4F4F; }
-.theme_bg_4-theme .preview-area h1, .theme_bg_4-theme .preview-area h2 { color: #006400; }
-.theme_bg_4-theme .preview-area .keyword { background-color: #90EE90; color: #000; padding: 2px 6px; border-radius: 4px; }
+.theme_bg_1-theme .preview-area h2 {
+    color: #A5472A;
+    border-bottom: 1px solid #D88C51;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    border-left: 3px solid #C85A1A;
+    font-family: "华文中宋", "微软雅黑", sans-serif;
+}
 
-.theme_bg_5-theme .preview-area { color: #4A4A4A; }
-.theme_bg_5-theme .preview-area h1, .theme_bg_5-theme .preview-area h2 { color: #8B4513; }
-.theme_bg_5-theme .preview-area .keyword { color: #00008B; background-color: rgba(173, 216, 230, 0.7); padding: 2px 6px; border-radius: 4px; }
+.theme_bg_1-theme .preview-area h3 {
+    color: #A5472A;
+    font-weight: normal;
+    border-bottom: 1px dashed rgba(165, 71, 42, 0.3);
+    display: inline-block;
+    padding-bottom: 3px;
+}
 
-.theme_bg_6-theme .preview-area { color: #36454F; }
-.theme_bg_6-theme .preview-area h1, .theme_bg_6-theme .preview-area h2 { color: #000080; }
-.theme_bg_6-theme .preview-area .keyword { color: #4682B4; border-bottom: 2px dotted #B0C4DE; }
+/* 关键词样式 */
+.theme_bg_1-theme .preview-area .keyword { 
+    color: #A5472A; 
+    background-color: rgba(216, 140, 81, 0.15); 
+    padding: 2px 6px; 
+    border-radius: 3px; 
+    font-weight: bold;
+    border-bottom: 1px solid #C85A1A;
+    transition: all 0.3s ease;
+}
 
-.theme_bg_7-theme .preview-area { color: #2E8B57; }
-.theme_bg_7-theme .preview-area h1, .theme_bg_7-theme .preview-area h2 { color: #FF6347; }
-.theme_bg_7-theme .preview-area .keyword { background-color: #FFD700; color: #000; padding: 3px 7px; border-radius: 20px; }
+.theme_bg_1-theme .preview-area .keyword:hover {
+    background-color: rgba(216, 140, 81, 0.3);
+}
+
+/* 引用块样式 */
+.theme_bg_1-theme .preview-area blockquote { 
+    border-left: 3px solid #C85A1A; 
+    padding: 12px 15px 12px 20px; 
+    margin: 20px 0;
+    background-color: rgba(250, 240, 230, 0.5);
+    font-style: italic;
+    color: #6B4226;
+    position: relative;
+}
+
+.theme_bg_1-theme .preview-area blockquote::before {
+    content: """;
+    font-size: 3em;
+    font-family: Georgia, serif;
+    color: rgba(200, 90, 26, 0.2);
+    position: absolute;
+    top: -10px;
+    left: 5px;
+    line-height: 1;
+}
+
+/* 列表样式 */
+.theme_bg_1-theme .preview-area ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.theme_bg_1-theme .preview-area ul li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 8px;
+}
+
+.theme_bg_1-theme .preview-area ul li::before {
+    content: "✓";
+    color: #C85A1A;
+    position: absolute;
+    left: -5px;
+    font-size: 14px;
+}
+
+/* 代码样式 */
+.theme_bg_1-theme .preview-area code {
+    background-color: rgba(250, 240, 230, 0.7);
+    color: #A5472A;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.9em;
+}
+
+/* 水平线样式 */
+.theme_bg_1-theme .preview-area hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, #C85A1A, transparent);
+    margin: 25px 0;
+}
+
+/* 链接样式 */
+.theme_bg_1-theme .preview-area a {
+    color: #C85A1A;
+    text-decoration: none;
+    border-bottom: 1px dotted #C85A1A;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_1-theme .preview-area a:hover {
+    color: #D88C51;
+    border-bottom-style: solid;
+}
+
+/* Theme_bg_2: 浅蓝素描 - 现代简约风格 */
+.theme_bg_2-theme .preview-area { 
+    color: #2c3e50; 
+    font-family: "SF Pro Text", -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.7;
+}
+
+/* 标题样式 */
+.theme_bg_2-theme .preview-area h1 {
+    color: #1c78c0;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 12px;
+    letter-spacing: -0.5px;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-size: 2em;
+}
+
+.theme_bg_2-theme .preview-area h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #007BFF, #00c6ff);
+    border-radius: 2px;
+}
+
+.theme_bg_2-theme .preview-area h2 { 
+    color: #007BFF; 
+    font-weight: 600;
+    margin-top: 1.8em;
+    border-bottom: 1px solid rgba(0, 123, 255, 0.2);
+    padding-bottom: 5px;
+}
+
+.theme_bg_2-theme .preview-area h3 {
+    color: #0056b3;
+    font-weight: 500;
+    font-size: 1.3em;
+}
+
+/* 关键词样式 - 更具互动性的下划线动画 */
+.theme_bg_2-theme .preview-area .keyword {
+    color: #0056b3;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 88%;
+    transition: all 0.3s ease;
+    padding: 2px 1px;
+    font-weight: 500;
+}
+
+.theme_bg_2-theme .preview-area .keyword:hover {
+    background-size: 100% 88%;
+    color: #003166;
+}
+
+/* 段落样式 */
+.theme_bg_2-theme .preview-area p {
+    margin-bottom: 1.2em;
+    line-height: 1.8;
+}
+
+/* 引用块样式 */
+.theme_bg_2-theme .preview-area blockquote {
+    border-left: 4px solid #007BFF;
+    background-color: rgba(0, 123, 255, 0.05);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* 列表样式 */
+.theme_bg_2-theme .preview-area ul li, 
+.theme_bg_2-theme .preview-area ol li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.theme_bg_2-theme .preview-area ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.theme_bg_2-theme .preview-area ul li {
+    position: relative;
+    padding-left: 20px;
+}
+
+.theme_bg_2-theme .preview-area ul li::before {
+    content: "•";
+    color: #007BFF;
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* 代码样式 */
+.theme_bg_2-theme .preview-area code {
+    background: rgba(0, 123, 255, 0.08);
+    color: #0056b3;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    font-size: 0.9em;
+}
+
+/* 水平线样式 */
+.theme_bg_2-theme .preview-area hr {
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, #007BFF, transparent);
+    border: none;
+    margin: 25px 0;
+}
+
+/* 链接样式 */
+.theme_bg_2-theme .preview-area a {
+    color: #007BFF;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_2-theme .preview-area a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #007BFF;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.theme_bg_2-theme .preview-area a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+
+/* Theme_bg_3: 粉彩花卉 - 浪漫文艺风格 */
+.theme_bg_3-theme .preview-area { 
+    color: #604D53; 
+    font-family: '汇文仿宋', 'FZFangSong-Z02', 'STFangSong', 'Times New Roman', serif;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+}
+
+/* 标题样式 - 精美装饰 */
+.theme_bg_3-theme .preview-area h1 {
+    color: #E5679B;
+    font-family: '华文行楷', 'STXingkai', 'Times New Roman', serif;
+    text-align: center;
+    letter-spacing: 3px;
+    position: relative;
+    padding: 15px 0;
+    margin: 30px 0;
+    font-weight: normal;
+    font-size: 1.8em;
+}
+
+.theme_bg_3-theme .preview-area h1::before, 
+.theme_bg_3-theme .preview-area h1::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    background: linear-gradient(to right, transparent, #F4A7C4, transparent);
+    width: 70%;
+}
+
+.theme_bg_3-theme .preview-area h1::before {
+    top: 0;
+}
+
+.theme_bg_3-theme .preview-area h1::after {
+    bottom: 0;
+}
+
+.theme_bg_3-theme .preview-area h2 {
+    color: #E5679B;
+    font-family: '方正姚体', 'FZYaoTi', 'STKaiti', 'Times New Roman', serif;
+    text-align: left;
+    letter-spacing: 1px;
+    padding: 5px 0 5px 10px;
+    border-left: 4px solid #F4A7C4;
+    margin: 25px 0 15px;
+    position: relative;
+    font-weight: normal;
+}
+
+.theme_bg_3-theme .preview-area h3 {
+    color: #C75D8B;
+    font-family: '汇文仿宋', 'FZFangSong-Z02', serif;
+    margin: 20px 0 10px;
+    font-weight: normal;
+    text-decoration: underline;
+    text-decoration-color: #F4A7C4;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    display: inline-block;
+}
+
+/* 精美首字下沉效果 */
+.theme_bg_3-theme .preview-area p:first-of-type::first-letter { 
+    font-size: 3em; 
+    float: left; 
+    line-height: 0.8; 
+    margin-right: 8px;
+    font-family: '华文行楷', 'STXingkai', serif; 
+    color: #E5679B;
+    font-weight: normal;
+    padding: 5px 5px 0 0;
+}
+
+/* 关键词样式 - 温柔突出 */
+.theme_bg_3-theme .preview-area .keyword { 
+    color: #C75D8B; 
+    background-color: rgba(244, 167, 196, 0.15); 
+    padding: 2px 6px; 
+    border-radius: 15px;
+    font-family: '方正姚体', 'FZYaoTi', 'STKaiti', serif;
+    letter-spacing: 1px;
+    border: 1px solid rgba(244, 167, 196, 0.4);
+    transition: all 0.3s ease;
+}
+
+.theme_bg_3-theme .preview-area .keyword:hover {
+    background-color: rgba(244, 167, 196, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 5px rgba(0,0,0,0.05);
+}
+
+/* 优雅的引用块 */
+.theme_bg_3-theme .preview-area blockquote {
+    margin: 20px 0;
+    padding: 15px 20px;
+    background-color: rgba(250, 240, 245, 0.8);
+    border-radius: 5px;
+    border-left: 3px solid #F4A7C4;
+    font-style: italic;
+    position: relative;
+}
+
+.theme_bg_3-theme .preview-area blockquote::before,
+.theme_bg_3-theme .preview-area blockquote::after {
+    content: '"';
+    font-family: 'Georgia', serif;
+    color: rgba(199, 93, 139, 0.3);
+    font-size: 2.5em;
+    line-height: 0.1;
+    position: absolute;
+}
+
+.theme_bg_3-theme .preview-area blockquote::before {
+    top: 15px;
+    left: 5px;
+}
+
+.theme_bg_3-theme .preview-area blockquote::after {
+    bottom: 0;
+    right: 10px;
+    content: '"';
+}
+
+/* 列表样式 - 花卉标记 */
+.theme_bg_3-theme .preview-area ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.theme_bg_3-theme .preview-area ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.theme_bg_3-theme .preview-area ul li::before {
+    content: "❀";
+    color: #F4A7C4;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 精美水平线 */
+.theme_bg_3-theme .preview-area hr {
+    border: 0;
+    height: 1px;
+    background-image: repeating-linear-gradient(to right, #F4A7C4, #F4A7C4 8px, transparent 8px, transparent 16px);
+    margin: 25px 0;
+    opacity: 0.7;
+}
+
+/* 链接样式 */
+.theme_bg_3-theme .preview-area a {
+    color: #E5679B;
+    text-decoration: none;
+    border-bottom: 1px dashed #F4A7C4;
+    padding-bottom: 1px;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_3-theme .preview-area a:hover {
+    color: #C75D8B;
+    border-bottom: 1px solid #E5679B;
+}
+
+/* 代码样式 */
+.theme_bg_3-theme .preview-area code {
+    background-color: rgba(250, 240, 245, 0.8);
+    color: #C75D8B;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    font-size: 0.9em;
+    border: 1px solid rgba(244, 167, 196, 0.3);
+}
+
+/* Theme_bg_4: 绿植素描 - 自然生态风格 */
+.theme_bg_4-theme .preview-area { 
+    color: #2E4034; 
+    font-family: "Noto Serif", "Source Han Serif SC", "Source Han Serif CN", "Songti SC", serif;
+    line-height: 1.8;
+}
+
+/* 标题样式 - 森林绿系列 */
+.theme_bg_4-theme .preview-area h1 {
+    color: #2E7D32;
+    font-family: "Montserrat", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    font-weight: 600;
+    padding: 10px 0 15px 0;
+    position: relative;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    letter-spacing: 0.5px;
+}
+
+.theme_bg_4-theme .preview-area h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: #81C784;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.theme_bg_4-theme .preview-area h2 { 
+    color: #3A7D44; 
+    border-bottom: 2px double #81C784; 
+    padding-bottom: 8px;
+    margin-top: 1.5em;
+    font-family: "Montserrat", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    font-weight: 500;
+    position: relative;
+}
+
+.theme_bg_4-theme .preview-area h2::before {
+    content: "◈";
+    color: #81C784;
+    margin-right: 8px;
+    font-size: 0.9em;
+}
+
+.theme_bg_4-theme .preview-area h3 {
+    color: #388E3C;
+    font-family: "Montserrat", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    font-weight: normal;
+    border-left: 3px solid #A5D6A7;
+    padding-left: 10px;
+    margin-top: 1.2em;
+}
+
+/* 关键词样式 - 自然徽章 */
+.theme_bg_4-theme .preview-area .keyword {
+    color: #fff;
+    background-color: #388E3C;
+    padding: 3px 10px;
+    border-radius: 15px 5px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.15);
+    font-family: "Montserrat", "Noto Sans SC", sans-serif;
+    font-size: 0.95em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.theme_bg_4-theme .preview-area .keyword:hover {
+    background-color: #2E7D32;
+    transform: translateY(-2px);
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+}
+
+.theme_bg_4-theme .preview-area .keyword::before {
+    content: "•";
+    margin-right: 3px;
+    font-size: 1.2em;
+    line-height: 0;
+    position: relative;
+    top: 2px;
+}
+
+/* 段落样式 */
+.theme_bg_4-theme .preview-area p {
+    margin-bottom: 1.2em;
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+
+/* 引用块样式 - 自然边框 */
+.theme_bg_4-theme .preview-area blockquote {
+    margin: 20px 0;
+    padding: 15px 20px;
+    background-color: rgba(129, 199, 132, 0.1);
+    border-radius: 5px;
+    border-left: 4px solid #81C784;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-style: italic;
+    color: #33691E;
+}
+
+/* 列表样式 - 自然标记 */
+.theme_bg_4-theme .preview-area ul {
+    list-style-type: none;
+    padding-left: 20px;
+    margin-bottom: 1.2em;
+}
+
+.theme_bg_4-theme .preview-area ul li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 8px;
+}
+
+.theme_bg_4-theme .preview-area ul li::before {
+    content: "⬢";
+    color: #81C784;
+    position: absolute;
+    left: 0;
+    font-size: 0.9em;
+}
+
+.theme_bg_4-theme .preview-area ol {
+    padding-left: 25px;
+    counter-reset: item;
+}
+
+.theme_bg_4-theme .preview-area ol li {
+    position: relative;
+    padding-left: 5px;
+    margin-bottom: 8px;
+    counter-increment: item;
+}
+
+/* 水平线样式 - 渐变效果 */
+.theme_bg_4-theme .preview-area hr { 
+    border: 0; 
+    height: 2px; 
+    background-image: linear-gradient(to right, rgba(46, 64, 52, 0), rgba(129, 199, 132, 0.75), rgba(46, 64, 52, 0)); 
+    margin: 25px 0;
+}
+
+/* 代码样式 */
+.theme_bg_4-theme .preview-area code {
+    background-color: rgba(129, 199, 132, 0.1);
+    color: #2E7D32;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    font-size: 0.9em;
+    border: 1px solid rgba(129, 199, 132, 0.2);
+}
+
+/* 链接样式 */
+.theme_bg_4-theme .preview-area a {
+    color: #2E7D32;
+    text-decoration: none;
+    border-bottom: 1px solid #A5D6A7;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_4-theme .preview-area a:hover {
+    color: #388E3C;
+    border-bottom-color: #388E3C;
+}
+
+/* 图片样式 */
+.theme_bg_4-theme .preview-area img {
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #E8F5E9;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    margin: 10px 0;
+}
+
+/* Theme_bg_5: 米色素描 - 复古质感风格 */
+.theme_bg_5-theme .preview-area { 
+    color: #5D4037; 
+    font-family: "Georgia", "Noto Serif CJK SC", "Noto Serif SC", "FangSong", serif;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+}
+
+/* 标题样式 - 仿古纸质感 */
+.theme_bg_5-theme .preview-area h1 {
+    color: #8B4513;
+    text-shadow: 1px 1px 0px #FFFFFF, 2px 2px 0px rgba(139, 69, 19, 0.1);
+    border: none;
+    border-bottom: 2px solid #D2B48C;
+    background-color: rgba(255,248,231,0.5);
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+    font-family: "Palatino Linotype", "Source Han Serif CN", "SimSun", serif;
+    position: relative;
+    margin-top: 1.5em;
+    font-weight: normal;
+}
+
+.theme_bg_5-theme .preview-area h1::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-image: repeating-linear-gradient(45deg, #D2B48C, #D2B48C 5px, transparent 5px, transparent 10px);
+}
+
+.theme_bg_5-theme .preview-area h2 {
+    color: #8B4513;
+    text-shadow: 1px 1px 0px #FFFFFF;
+    border-left: 3px solid #D2B48C;
+    background-color: rgba(255,248,231,0.3);
+    padding: 8px 12px;
+    border-radius: 0 5px 5px 0;
+    font-family: "Bookman Old Style", "Noto Serif CJK SC", "SimSun", serif;
+    font-weight: normal;
+    margin-top: 1.3em;
+}
+
+.theme_bg_5-theme .preview-area h3 {
+    color: #A0522D;
+    font-family: "Bookman Old Style", "STKaiti", "KaiTi", serif;
+    border-bottom: 1px dotted #D2B48C;
+    padding-bottom: 5px;
+    display: inline-block;
+    font-weight: normal;
+}
+
+/* 关键词样式 - 牛皮纸效果 */
+.theme_bg_5-theme .preview-area .keyword { 
+    color: #5D4037; 
+    background-color: rgba(222, 184, 135, 0.3); 
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: "STKaiti", "KaiTi", serif;
+    font-size: 1.05em;
+    border: 1px solid rgba(210, 180, 140, 0.4);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_5-theme .preview-area .keyword:hover {
+    background-color: rgba(222, 184, 135, 0.5);
+}
+
+/* 引用块样式 - 古书效果 */
+.theme_bg_5-theme .preview-area blockquote { 
+    background-color: rgba(255, 248, 231, 0.5); 
+    border: none;
+    border-left: 3px solid #E6B88A; 
+    border-right: 1px solid rgba(210, 180, 140, 0.3);
+    border-top: 1px solid rgba(210, 180, 140, 0.3);
+    border-bottom: 1px solid rgba(210, 180, 140, 0.3);
+    padding: 15px; 
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+    position: relative;
+    font-family: "STKaiti", "KaiTi", serif;
+    color: #6B4226;
+}
+
+.theme_bg_5-theme .preview-area blockquote::before {
+    content: """;
+    font-size: 2.5em;
+    line-height: 0.1em;
+    color: rgba(139, 69, 19, 0.2);
+    font-family: Georgia, serif;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+}
+
+/* 段落样式 */
+.theme_bg_5-theme .preview-area p {
+    text-align: justify;
+    margin-bottom: 1.2em;
+    text-indent: 2em; /* 段落首行缩进，营造传统书籍感 */
+    line-height: 2;
+}
+
+/* 列表样式 - 传统标记 */
+.theme_bg_5-theme .preview-area ul {
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+.theme_bg_5-theme .preview-area ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.theme_bg_5-theme .preview-area ul li::before {
+    content: "◇";
+    color: #D2B48C;
+    position: absolute;
+    left: 0;
+}
+
+.theme_bg_5-theme .preview-area ol {
+    padding-left: 30px;
+    margin: 15px 0;
+}
+
+.theme_bg_5-theme .preview-area ol li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    padding-left: 5px;
+}
+
+/* 水平线样式 - 古典分割线 */
+.theme_bg_5-theme .preview-area hr {
+    border: 0;
+    height: 1px;
+    background-image: repeating-linear-gradient(to right, #D2B48C, #D2B48C 10px, transparent 10px, transparent 20px);
+    margin: 25px auto;
+    width: 80%;
+}
+
+/* 代码样式 */
+.theme_bg_5-theme .preview-area code {
+    background-color: rgba(255, 248, 231, 0.7);
+    color: #8B4513;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: "Consolas", "Lucida Console", monospace;
+    font-size: 0.9em;
+    border: 1px solid rgba(210, 180, 140, 0.3);
+}
+
+/* 链接样式 */
+.theme_bg_5-theme .preview-area a {
+    color: #A0522D;
+    text-decoration: none;
+    border-bottom: 1px dotted #D2B48C;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_5-theme .preview-area a:hover {
+    color: #8B4513;
+    border-bottom: 1px solid #A0522D;
+}
+
+/* 图片样式 - 老照片风格 */
+.theme_bg_5-theme .preview-area img {
+    max-width: 100%;
+    border: 5px solid #FFF;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    margin: 10px 0;
+    transition: all 0.3s ease;
+    filter: sepia(20%);
+}
+
+.theme_bg_5-theme .preview-area img:hover {
+    filter: sepia(0%);
+    transform: scale(1.01);
+}
+
+/* Theme_bg_6: 文艺素描 - 极简艺术风格 */
+.theme_bg_6-theme .preview-area { 
+    color: #333333; 
+    font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.2px;
+}
+
+/* 标题样式 - 极简纯粹 */
+.theme_bg_6-theme .preview-area h1 {
+    color: #333;
+    border-bottom: none;
+    font-weight: 300;
+    font-size: 2em;
+    letter-spacing: -0.5px;
+    margin: 1.5em 0 1em;
+    padding: 0;
+    position: relative;
+    font-family: "Helvetica Neue", "PingFang SC", sans-serif;
+}
+
+.theme_bg_6-theme .preview-area h1::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: #333;
+    margin-top: 10px;
+    transition: width 0.3s ease;
+}
+
+.theme_bg_6-theme .preview-area h1:hover::after {
+    width: 80px;
+}
+
+.theme_bg_6-theme .preview-area h2 { 
+    color: #444; 
+    border-bottom: 1px dotted #888; 
+    padding-bottom: 5px;
+    font-weight: 400;
+    margin: 1.5em 0 0.8em;
+    font-family: "Helvetica Neue", "PingFang SC", sans-serif;
+}
+
+.theme_bg_6-theme .preview-area h3 {
+    color: #555;
+    font-weight: 500;
+    font-size: 1.2em;
+    margin: 1.2em 0 0.5em;
+}
+
+/* 关键词样式 - 简约强调 */
+.theme_bg_6-theme .preview-area .keyword {
+    color: #007ACC;
+    font-family: "Fira Code", "SF Mono", "Courier New", monospace;
+    font-weight: 500;
+    border-bottom: 1px solid #007ACC;
+    padding-bottom: 1px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    background-color: rgba(0, 122, 204, 0.05);
+    padding: 0 3px;
+}
+
+.theme_bg_6-theme .preview-area .keyword:hover {
+    background-color: rgba(0, 122, 204, 0.1);
+    color: #0062a3;
+}
+
+/* 段落样式 - 清晰易读 */
+.theme_bg_6-theme .preview-area p {
+    margin-bottom: 1.2em;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* 引用块样式 - 简约设计 */
+.theme_bg_6-theme .preview-area blockquote {
+    margin: 20px 0;
+    padding-left: 20px;
+    border-left: 3px solid #ddd;
+    color: #666;
+    font-style: italic;
+}
+
+/* 列表样式 - 极简列表 */
+.theme_bg_6-theme .preview-area ul,
+.theme_bg_6-theme .preview-area ol {
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+.theme_bg_6-theme .preview-area ul li,
+.theme_bg_6-theme .preview-area ol li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+
+.theme_bg_6-theme .preview-area ul {
+    list-style-type: square;
+}
+
+/* 水平线样式 - 简约分隔 */
+.theme_bg_6-theme .preview-area hr { 
+    border: none; 
+    border-top: 1px dotted #999;
+    margin: 30px 0;
+    width: 100%;
+}
+
+/* 代码样式 - 现代代码风格 */
+.theme_bg_6-theme .preview-area code {
+    font-family: "Fira Code", "SF Mono", "Courier New", monospace;
+    background: #f5f5f5;
+    color: #333;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    border: 1px solid #eee;
+}
+
+/* 链接样式 - 简洁链接 */
+.theme_bg_6-theme .preview-area a {
+    color: #007ACC;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.theme_bg_6-theme .preview-area a:hover {
+    border-bottom-color: #007ACC;
+}
+
+/* 图片样式 - 现代图片展示 */
+.theme_bg_6-theme .preview-area img {
+    max-width: 100%;
+    border-radius: 4px;
+    display: block;
+    margin: 20px auto;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_6-theme .preview-area img:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 表格样式 */
+.theme_bg_6-theme .preview-area table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    border: 1px solid #eee;
+}
+
+.theme_bg_6-theme .preview-area th,
+.theme_bg_6-theme .preview-area td {
+    padding: 10px;
+    border: 1px solid #eee;
+    text-align: left;
+}
+
+.theme_bg_6-theme .preview-area th {
+    background-color: #f9f9f9;
+    font-weight: 500;
+}
+
+.theme_bg_6-theme .preview-area tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Theme_bg_7: 清新卡通 - 活力趣味风格 */
+.theme_bg_7-theme .preview-area { 
+    color: #2A644D; 
+    font-family: "Comic Sans MS", "Comic Neue", "Yuanti SC", "YouYuan", sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+/* 标题样式 - 充满活力的气泡效果 */
+.theme_bg_7-theme .preview-area h1 {
+    color: #fff;
+    background-color: #FF6F61;
+    padding: 12px 20px;
+    border-radius: 25px 8px;
+    display: inline-block;
+    font-size: 1.8em;
+    box-shadow: 3px 3px 0px #FFB347;
+    position: relative;
+    margin: 1.5em 0 1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.theme_bg_7-theme .preview-area h1:hover {
+    transform: translateY(-3px);
+    box-shadow: 5px 5px 0px #FFB347;
+}
+
+.theme_bg_7-theme .preview-area h1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #FF6F61;
+    border-radius: 5px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+.theme_bg_7-theme .preview-area h2 {
+    color: #fff;
+    background-color: #44CF6C;
+    padding: 8px 18px;
+    border-radius: 20px 5px;
+    display: inline-block;
+    font-weight: bold;
+    box-shadow: 2px 2px 0px #C3E6CB;
+    margin: 1.3em 0 0.8em;
+}
+
+.theme_bg_7-theme .preview-area h3 {
+    color: #FF6F61;
+    display: inline-block;
+    border-bottom: 3px dotted #FFB347;
+    padding-bottom: 3px;
+    font-weight: bold;
+    margin: 1.2em 0 0.5em;
+}
+
+/* 关键词样式 - 可爱徽章 */
+.theme_bg_7-theme .preview-area .keyword {
+    color: #fff;
+    background-color: #2A644D;
+    padding: 4px 12px;
+    border-radius: 5px 20px;
+    font-weight: bold;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    border: 2px solid white;
+    outline: 1px solid #2A644D;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.theme_bg_7-theme .preview-area .keyword:hover {
+    background-color: #34775C;
+    transform: rotate(-2deg) scale(1.05);
+}
+
+/* 段落样式 - 活泼字体 */
+.theme_bg_7-theme .preview-area p {
+    margin-bottom: 1.2em;
+    font-size: 1.05em;
+    line-height: 1.8;
+}
+
+/* 引用块样式 - 活泼手绘风 */
+.theme_bg_7-theme .preview-area blockquote { 
+    border: 3px dashed #FF6F61; 
+    padding: 15px; 
+    border-radius: 15px; 
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 20px 0;
+    position: relative;
+}
+
+.theme_bg_7-theme .preview-area blockquote::before {
+    content: "❝";
+    font-size: 2em;
+    color: #FF6F61;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+/* 列表样式 - 可爱标记 */
+.theme_bg_7-theme .preview-area ul {
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+.theme_bg_7-theme .preview-area ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+
+.theme_bg_7-theme .preview-area ul li::before {
+    content: "✿";
+    color: #FF6F61;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 1.2em;
+}
+
+.theme_bg_7-theme .preview-area ol {
+    counter-reset: item;
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.theme_bg_7-theme .preview-area ol li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    counter-increment: item;
+}
+
+.theme_bg_7-theme .preview-area ol li::before {
+    content: counter(item);
+    background-color: #FFB347;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8em;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 22px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+/* 水平线样式 - 波浪线 */
+.theme_bg_7-theme .preview-area hr {
+    border: none;
+    height: 6px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="10" viewBox="0 0 50 10"><path fill="none" stroke="%23FF6F61" stroke-width="2" d="M0,5 c 5,-5 10,5 15,0 s 10,-5 15,0 s 10,5 15,0 s 10,-5 15,0"/></svg>');
+    background-size: 50px 10px;
+    background-repeat: repeat-x;
+    margin: 30px 0;
+}
+
+/* 代码样式 - 手绘效果 */
+.theme_bg_7-theme .preview-area code {
+    background-color: #FFFFE0;
+    color: #2A644D;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: "Comic Mono", "Comic Sans MS", monospace;
+    font-size: 0.95em;
+    border: 1px dashed #FFB347;
+}
+
+/* 链接样式 - 活泼下划线 */
+.theme_bg_7-theme .preview-area a {
+    color: #FF6F61;
+    text-decoration: none;
+    background-image: linear-gradient(transparent 60%, rgba(255, 111, 97, 0.3) 40%);
+    padding: 0 2px;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_7-theme .preview-area a:hover {
+    background-image: linear-gradient(transparent 30%, rgba(255, 111, 97, 0.5) 70%);
+    color: #e05a4d;
+}
+
+/* 图片样式 - 卡通相框 */
+.theme_bg_7-theme .preview-area img {
+    max-width: 100%;
+    border: 4px solid white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 0 1px #FFB347;
+    margin: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.theme_bg_7-theme .preview-area img:hover {
+    transform: scale(1.02) rotate(1deg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 0 0 2px #FF6F61;
+}
+
+/* 表格样式 - 卡通表格 */
+.theme_bg_7-theme .preview-area table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin: 20px 0;
+    border: 2px solid #44CF6C;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.theme_bg_7-theme .preview-area th {
+    background-color: #44CF6C;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+
+.theme_bg_7-theme .preview-area td {
+    padding: 8px 10px;
+    border-bottom: 1px dashed #C3E6CB;
+    text-align: center;
+}
+
+.theme_bg_7-theme .preview-area tr:last-child td {
+    border-bottom: none;
+}
+
+.theme_bg_7-theme .preview-area tr:nth-child(even) {
+    background-color: rgba(195, 230, 203, 0.2);
+}
+
+.theme_bg_7-theme .preview-area tr:hover {
+    background-color: rgba(195, 230, 203, 0.4);
+}
+
+
+/* Theme Switcher and Button Styles */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 8px 15px;
+    border-radius: 30px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.theme-switcher:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.theme-switcher label {
+    font-weight: 500;
+    color: #555;
+}
+
+.theme-switcher select {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+    font-size: 14px;
+    color: #444;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.theme-switcher select:hover, .theme-switcher select:focus {
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e2e6ea 100%);
+}
+
+#download-btn {
+    background: linear-gradient(135deg, #ff7676 0%, #f54ea2 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 3px 10px rgba(245, 78, 162, 0.3);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#download-btn:hover {
+    box-shadow: 0 5px 15px rgba(245, 78, 162, 0.4);
+    transform: translateY(-2px);
+}
+
+#download-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(245, 78, 162, 0.4);
+}
+
