@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlOutput = document.getElementById('html-output');
     const themeSelect = document.getElementById('theme-select');
     const downloadBtn = document.getElementById('download-btn');
+    const fontSelect = document.getElementById('font-select');
 
     marked.setOptions({
         gfm: true,
@@ -21,6 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const backgroundContainer = document.getElementById('background-container');
         document.body.className = `${selectedTheme}-theme`;
         backgroundContainer.className = `bg-${selectedTheme}`;
+    };
+
+    const switchFont = () => {
+        const selectedFont = fontSelect.value;
+        // Remove any existing font classes from the htmlOutput element
+        htmlOutput.className = htmlOutput.className.replace(/\s?font-\S*/g, '');
+        if (selectedFont !== 'default') {
+            htmlOutput.classList.add(`font-${selectedFont}`);
+        }
     };
 
     const downloadImage = async () => {
@@ -111,10 +121,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     markdownInput.addEventListener('input', render);
     themeSelect.addEventListener('change', switchTheme);
+    fontSelect.addEventListener('change', switchFont);
     downloadBtn.addEventListener('click', downloadImage);
 
     // Initial render and theme
     switchTheme();
+    switchFont();
     render();
 
     // --- Resizer Logic ---

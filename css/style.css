@@ -1,3 +1,53 @@
+/* --- FONT DEFINITIONS --- */
+@font-face {
+    font-family: 'hanchan';
+    src: url('../fonts/寒蝉黑宋.otf') format('opentype');
+}
+@font-face {
+    font-family: 'huiwen';
+    src: url('../fonts/汇文仿宋.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'jianjia';
+    src: url('../fonts/蒹葭体.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'pingxian';
+    src: url('../fonts/屏显臻宋.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'wenjin';
+    src: url('../fonts/文津宋体.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'xinbi';
+    src: url('../fonts/新笔书.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'yansui';
+    src: url('../fonts/芫荽.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'zhiyi';
+    src: url('../fonts/致一宋体.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'zhuque';
+    src: url('../fonts/朱雀仿宋.ttf') format('truetype');
+}
+
+/* --- FONT CLASSES --- */
+.preview-area.font-hanchan { font-family: 'hanchan', sans-serif !important; }
+.preview-area.font-huiwen { font-family: 'huiwen', sans-serif !important; }
+.preview-area.font-jianjia { font-family: 'jianjia', sans-serif !important; }
+.preview-area.font-pingxian { font-family: 'pingxian', sans-serif !important; }
+.preview-area.font-wenjin { font-family: 'wenjin', sans-serif !important; }
+.preview-area.font-xinbi { font-family: 'xinbi', sans-serif !important; }
+.preview-area.font-yansui { font-family: 'yansui', sans-serif !important; }
+.preview-area.font-zhiyi { font-family: 'zhiyi', sans-serif !important; }
+.preview-area.font-zhuque { font-family: 'zhuque', sans-serif !important; }
+
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
@@ -226,6 +276,7 @@ main {
 
 .preview-area p {
     margin-bottom: 1.2em;
+    text-shadow: 0.05px 0.05px 2px rgba(80,80, 80, 0.6);
 }
 
 .preview-area img {
@@ -351,7 +402,7 @@ main {
 }
 
 .theme_bg_1-theme .preview-area blockquote::before {
-    content: """;
+    content: '"';
     font-size: 3em;
     font-family: Georgia, serif;
     color: rgba(200, 90, 26, 0.2);
@@ -1009,7 +1060,7 @@ main {
 }
 
 .theme_bg_5-theme .preview-area blockquote::before {
-    content: """;
+    content: '"';
     font-size: 2.5em;
     line-height: 0.1em;
     color: rgba(139, 69, 19, 0.2);
@@ -1596,4 +1647,3 @@ main {
     transform: translateY(1px);
     box-shadow: 0 2px 5px rgba(245, 78, 162, 0.4);
 }
-
