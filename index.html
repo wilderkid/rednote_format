@@ -10,7 +10,13 @@
     <div id="background-container"></div>
     <div class="container">
         <header>
-            <h1>小红书 Markdown 笔记</h1>
+            <div class="header-left">
+                <h1>RedNote 排版工具</h1>
+                <nav id="mode-switcher">
+                    <button id="nav-content-btn" class="active">内容制作</button>
+                    <button id="nav-cover-btn">封面制作</button>
+                </nav>
+            </div>
             <div class="theme-switcher">
                 <label for="theme-select">选择主题:</label>
                 <select id="theme-select">
@@ -39,11 +45,59 @@
                 <button id="download-btn">下载图片</button>
             </div>
         </header>
-        <main>
-            <textarea id="markdown-input" placeholder="在这里输入你的 Markdown..."></textarea>
-            <div class="resizer" id="resizer"></div>
-            <div id="html-output" class="preview-area"></div>
-        </main>
+
+        <!-- View for Content Creation -->
+        <div id="content-maker-view">
+            <main>
+                <textarea id="markdown-input" placeholder="在这里输入你的 Markdown..."></textarea>
+                <div class="resizer" id="resizer"></div>
+                <div id="html-output" class="preview-area"></div>
+            </main>
+        </div>
+
+        <!-- View for Cover Creation (Initially Hidden) -->
+        <div id="cover-maker-view" style="display: none;">
+            <main>
+                <div class="cover-inputs">
+                    <h2>封面设置</h2>
+                    
+                    <div id="cover-type-switcher">
+                        <label><input type="radio" name="cover-type" value="sentence" checked> 一句话封面</label>
+                        <label><input type="radio" name="cover-type" value="news"> 新闻列表封面</label>
+                    </div>
+
+                    <div id="sentence-inputs">
+                        <label for="cover-title-input">标题:</label>
+                        <input type="text" id="cover-title-input" placeholder="输入封面主标题">
+                        
+                        <label for="cover-author-input">作者:</label>
+                        <input type="text" id="cover-author-input" placeholder="输入作者名">
+                    </div>
+
+                    <div id="news-inputs" style="display: none;">
+                        <label for="news-title-input">主标题:</label>
+                        <input type="text" id="news-title-input" placeholder="输入新闻主标题">
+                        <label for="news-list-input">新闻列表 (每行一条):</label>
+                        <textarea id="news-list-input" rows="8" placeholder="输入新闻条目..."></textarea>
+                    </div>
+                </div>
+                <div class="resizer" id="cover-resizer"></div>
+                <div id="cover-preview-area" class="preview-area">
+                    <!-- Layout for Sentence Cover -->
+                    <div id="sentence-layout">
+                        <div id="cover-title-output"></div>
+                        <div id="cover-author-output"></div>
+                    </div>
+                    <!-- Layout for News Cover -->
+                    <div id="news-layout" style="display: none;">
+                        <h2 id="news-title-output"></h2>
+                        <ul id="news-list-output"></ul>
+                    </div>
+                    
+                    <img id="cover-qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://github.com" alt="QR Code">
+                </div>
+            </main>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.1.6/dist/dom-to-image-more.min.js"></script>

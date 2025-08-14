@@ -117,6 +117,12 @@ header:hover {
     background-color: rgba(255, 255, 255, 0.85);
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 h1 {
     font-size: 28px;
     margin: 0;
@@ -149,6 +155,29 @@ h1:after {
 h1:hover:after {
     transform: scaleX(1);
     opacity: 1;
+}
+
+#mode-switcher button {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    color: #555;
+}
+
+#mode-switcher button:hover {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+
+#mode-switcher button.active {
+    background: linear-gradient(135deg, #ff7676 0%, #f54ea2 100%);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(245, 78, 162, 0.3);
 }
 
 main {
@@ -196,7 +225,7 @@ main {
     background-color: white;
 }
 
-#markdown-input {
+#markdown-input, .cover-inputs {
     width: 100%;
     /* height is now controlled by the parent grid */
     padding: 20px;
@@ -231,6 +260,42 @@ main {
     opacity: 0.4;
 }
 
+.cover-inputs {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.cover-inputs h2 {
+    margin-top: 0;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.cover-inputs label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 500;
+}
+
+.cover-inputs input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.cover-inputs input[type="text"]:focus {
+    border-color: #ff7676;
+    box-shadow: 0 0 8px rgba(255, 118, 118, 0.2);
+    outline: none;
+}
+
 .preview-area {
     border: none;
     padding: 30px;
@@ -247,6 +312,33 @@ main {
     width: 100%; /* 占满可用空间 */
     font-size: 16px;
     line-height: 1.8;
+}
+
+#cover-preview-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+#cover-title-output {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+#cover-author-output {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+#cover-qr-code {
+    width: 100px;
+    height: 100px;
+    border: 5px solid white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .preview-area::-webkit-scrollbar {
