@@ -1647,3 +1647,273 @@ main {
     transform: translateY(1px);
     box-shadow: 0 2px 5px rgba(245, 78, 162, 0.4);
 }
+
+/* --- GitHub Theme --- */
+/* This theme mimics the GitHub Markdown style */
+
+/* Overall container adjustments */
+.theme_github-theme .preview-area {
+    background-color: #ffffff;
+    color: #24292e;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 45px;
+    text-shadow: none;
+}
+
+/* Resetting properties from other themes */
+.theme_github-theme .preview-area h1,
+.theme_github-theme .preview-area h2,
+.theme_github-theme .preview-area h3,
+.theme_github-theme .preview-area h4,
+.theme_github-theme .preview-area h5,
+.theme_github-theme .preview-area h6 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 600;
+    line-height: 1.25;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    padding: 0;
+    border-bottom: 1px solid #eaecef;
+    color: #24292e;
+    background: none;
+    text-shadow: none;
+    text-align: left;
+}
+
+.theme_github-theme .preview-area h1::before,
+.theme_github-theme .preview-area h1::after,
+.theme_github-theme .preview-area h2::before,
+.theme_github-theme .preview-area h2::after {
+    content: none;
+}
+
+.theme_github-theme .preview-area h1 {
+    font-size: 2em;
+    padding-bottom: .3em;
+}
+
+.theme_github-theme .preview-area h2 {
+    font-size: 1.5em;
+    padding-bottom: .3em;
+}
+
+.theme_github-theme .preview-area h3 {
+    font-size: 1.25em;
+    border-bottom: none;
+}
+
+.theme_github-theme .preview-area h4 {
+    font-size: 1em;
+    border-bottom: none;
+}
+
+.theme_github-theme .preview-area h5 {
+    font-size: .875em;
+    border-bottom: none;
+}
+
+.theme_github-theme .preview-area h6 {
+    font-size: .85em;
+    color: #6a737d;
+    border-bottom: none;
+}
+
+/* Paragraphs */
+.theme_github-theme .preview-area p {
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-indent: 0;
+}
+
+/* Blockquotes */
+.theme_github-theme .preview-area blockquote {
+    margin: 0 0 16px 0;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: .25em solid #dfe2e5;
+    background-color: #ffffff;
+}
+
+.theme_github-theme .preview-area blockquote::before,
+.theme_github-theme .preview-area blockquote::after {
+    content: none;
+}
+
+/* Lists */
+.theme_github-theme .preview-area ul,
+.theme_github-theme .preview-area ol {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-left: 2em;
+}
+
+.theme_github-theme .preview-area ul {
+    list-style-type: disc;
+}
+
+.theme_github-theme .preview-area ol {
+    list-style-type: decimal;
+}
+
+.theme_github-theme .preview-area ul li,
+.theme_github-theme .preview-area ol li {
+    margin-bottom: .25em;
+}
+
+.theme_github-theme .preview-area ul li::before {
+    content: none;
+}
+
+/* Horizontal Rule */
+.theme_github-theme .preview-area hr {
+    height: .25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #e1e4e8;
+    border: 0;
+}
+
+/* Links */
+.theme_github-theme .preview-area a {
+    color: #0366d6;
+    text-decoration: none;
+    background: none;
+    border-bottom: none;
+}
+
+.theme_github-theme .preview-area a:hover {
+    text-decoration: underline;
+}
+
+/* Keyword / Strong */
+.theme_github-theme .preview-area .keyword {
+    font-weight: 600;
+    color: #24292e;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+
+/* Inline Code */
+.theme_github-theme .preview-area code {
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27,31,35,.05);
+    border-radius: 3px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: #24292e;
+}
+
+/* Code Blocks */
+.theme_github-theme .preview-area pre {
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+}
+
+.theme_github-theme .preview-area pre code {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+    font-size: 100%;
+    color: #24292e;
+}
+
+/* Images */
+.theme_github-theme .preview-area img {
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+}
+
+/* Tables */
+.theme_github-theme .preview-area table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 16px;
+    display: block;
+    overflow: auto;
+}
+
+.theme_github-theme .preview-area tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+.theme_github-theme .preview-area th,
+.theme_github-theme .preview-area td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+.theme_github-theme .preview-area th {
+    font-weight: 600;
+}
+
+.theme_github-theme .preview-area tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+/* --- Loading Modal --- */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none; /* Hidden by default */
+    backdrop-filter: blur(5px);
+}
+
+.loading-modal {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    color: #333;
+}
+
+.loading-modal p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #ff7676;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

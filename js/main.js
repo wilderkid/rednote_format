@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadImage = async () => {
         const preview = document.getElementById('html-output');
         const background = document.getElementById('background-container');
+        const loadingOverlay = document.getElementById('loading-overlay');
 
         // --- 增强版宽度计算: 考虑实际内容宽度和溢出 ---
         const computedStyle = window.getComputedStyle(preview);
@@ -87,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(captureWrapper);
 
         try {
+            // Show loading modal
+            loadingOverlay.style.display = 'flex';
+
             // 6. 使用domtoimage.toPng捕获组合元素，确保足够宽度
             const dataUrl = await domtoimage.toPng(captureWrapper, {
                 width: captureWidth,
@@ -110,8 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('截图失败，错误信息:', error);
-            alert(`截图失败！请打开开发者工具(F12)查看控制台(Console)中的错误信息。\n\n${error}`);
+            alert(`截图失败！请打开开发者工具(F12)查看控制台(Console)中的错误信息.\n\n${error}`);
         } finally {
+            // Hide loading modal
+            loadingOverlay.style.display = 'none';
             // 8. Clean up.
             if (document.body.contains(captureWrapper)) {
                 document.body.removeChild(captureWrapper);

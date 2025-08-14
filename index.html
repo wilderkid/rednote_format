@@ -21,6 +21,7 @@
                     <option value="theme_bg_5">米色素描</option>
                     <option value="theme_bg_6">文艺素描</option>
                     <option value="theme_bg_7">清新卡通</option>
+                    <option value="theme_github">GitHub 风格</option>
                 </select>
                 <label for="font-select">选择字体:</label>
                 <select id="font-select">
@@ -47,5 +48,12 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.1.6/dist/dom-to-image-more.min.js"></script>
     <script src="js/main.js"></script>
+
+    <div id="loading-overlay">
+        <div class="loading-modal">
+            <div class="spinner"></div>
+            <p>正在生成图片，请稍候...</p>
+        </div>
+    </div>
 </body>
 </html>
