@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试LOGO位置</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .test-container {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .cover-header-test {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        
+        .cover-icon-test {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        
+        #cover-date-test {
+            font-size: 0.8em;
+            color: #666;
+        }
+    </style>
+</head>
+<body class="theme_bg_6-theme">
+    <div class="test-container">
+        <h2>测试1: 只有LOGO</h2>
+        <div class="cover-header-test">
+            <img class="cover-icon-test" src="imgs/LOGO/logo.jpeg" alt="icon">
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h2>测试2: 有LOGO和日期</h2>
+        <div class="cover-header-test">
+            <img class="cover-icon-test" src="imgs/LOGO/logo.jpeg" alt="icon">
+            <span id="cover-date-test">2023 / 08 / 18</span>
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h2>测试3: 有LOGO和空日期</h2>
+        <div class="cover-header-test">
+            <img class="cover-icon-test" src="imgs/LOGO/logo.jpeg" alt="icon">
+            <span id="cover-date-test"></span>
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h2>测试4: 文艺素描主题下的实际封面</h2>
+        <div id="cover-preview-area" class="preview-area">
+            <div class="cover-header">
+                <img class="cover-icon" src="imgs/LOGO/logo.jpeg" alt="icon">
+                <span id="cover-date">2023 / 08 / 18</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

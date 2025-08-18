@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调试LOGO位置</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme_bg_6-theme">
+    <div class="container">
+        <div id="cover-preview-area" class="preview-area">
+            <div class="cover-header">
+                <img class="cover-icon" src="imgs/LOGO/logo.jpeg" alt="icon">
+                <span id="cover-date">2023 / 08 / 18</span>
+            </div>
+        </div>
+    </div>
+    
+    <div style="margin-top: 20px; padding: 20px; border: 1px solid #ccc;">
+        <h3>调试信息：</h3>
+        <button onclick="showStyles()">显示计算样式</button>
+        <div id="debug-info"></div>
+    </div>
+    
+    <script>
+        function showStyles() {
+            const logo = document.querySelector('.cover-icon');
+            const date = document.querySelector('#cover-date');
+            const header = document.querySelector('.cover-header');
+            
+            const logoStyle = window.getComputedStyle(logo);
+            const dateStyle = window.getComputedStyle(date);
+            const headerStyle = window.getComputedStyle(header);
+            
+            const debugInfo = `
+                <h4>Header样式:</h4>
+                <p>display: ${headerStyle.display}</p>
+                <p>justify-content: ${headerStyle.justifyContent}</p>
+                <p>align-items: ${headerStyle.alignItems}</p>
+                
+                <h4>LOGO样式:</h4>
+                <p>width: ${logoStyle.width}</p>
+                <p>height: ${logoStyle.height}</p>
+                <p>margin-left: ${logoStyle.marginLeft}</p>
+                <p>margin-right: ${logoStyle.marginRight}</p>
+                
+                <h4>日期样式:</h4>
+                <p>display: ${dateStyle.display}</p>
+                <p>margin-left: ${dateStyle.marginLeft}</p>
+                <p>margin-right: ${dateStyle.marginRight}</p>
+                <p>visibility: ${dateStyle.visibility}</p>
+                <p>opacity: ${dateStyle.opacity}</p>
+            `;
+            
+            document.getElementById('debug-info').innerHTML = debugInfo;
+        }
+    </script>
+</body>
+</html>

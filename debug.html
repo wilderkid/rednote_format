@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调试LOGO位置</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme_bg_6-theme">
+    <div class="container">
+        <div id="cover-preview-area" class="preview-area">
+            <div class="cover-header">
+                <img class="cover-icon" src="imgs/LOGO/logo.jpeg" alt="icon">
+                <span id="cover-date">2023 / 08 / 18</span>
+            </div>
+        </div>
+    </div>
+    
+    <div style="margin-top: 20px; padding: 20px; border: 1px solid #ccc;">
+        <h3>调试信息：</h3>
+        <p>当前主题类: <span id="theme-class"></span></p>
+        <p>LOGO元素样式: <span id="logo-styles"></span></p>
+        <p>日期元素样式: <span id="date-styles"></span></p>
+        <p>Header元素样式: <span id="header-styles"></span></p>
+    </div>
+    
+    <script>
+        // 显示当前主题类
+        document.getElementById('theme-class').textContent = document.body.className;
+        
+        // 获取元素样式
+        const logo = document.querySelector('.cover-icon');
+        const date = document.querySelector('#cover-date');
+        const header = document.querySelector('.cover-header');
+        
+        document.getElementById('logo-styles').textContent = JSON.stringify({
+            width: logo.style.width,
+            height: logo.style.height,
+            marginLeft: logo.style.marginLeft,
+            marginRight: logo.style.marginRight
+        });
+        
+        document.getElementById('date-styles').textContent = JSON.stringify({
+            marginLeft: date.style.marginLeft,
+            marginRight: date.style.marginRight,
+            display: date.style.display
+        });
+        
+        document.getElementById('header-styles').textContent = JSON.stringify({
+            justifyContent: header.style.justifyContent,
+            display: header.style.display
+        });
+    </script>
+</body>
+</html>

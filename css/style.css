@@ -2127,6 +2127,27 @@ main {
     background-color: #f6f8fa;
 }
 
+/* 修复文艺素描主题中LOGO居中的问题，确保LOGO在左侧 */
+.theme_bg_6-theme #cover-preview-area .cover-header {
+    justify-content: space-between !important;
+}
+
+/* 确保文艺素描主题下的LOGO和日期元素样式与其他主题一致 */
+.theme_bg_6-theme .cover-icon {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.theme_bg_6-theme #cover-date {
+    font-size: 0.8em !important;
+    color: #666 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 /* --- Loading Modal --- */
 #loading-overlay {
     position: fixed;
