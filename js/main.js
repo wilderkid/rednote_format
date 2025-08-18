@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadBtn = document.getElementById('download-btn');
     const backgroundContainer = document.getElementById('background-container');
     const loadingOverlay = document.getElementById('loading-overlay');
+    const titleSizeInput = document.getElementById('title-size-input');
+    const contentSizeInput = document.getElementById('content-size-input');
 
     // --- Mode Switching Elements ---
     const navContentBtn = document.getElementById('nav-content-btn');
@@ -15,18 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Content Maker Elements ---
     const markdownInput = document.getElementById('markdown-input');
     const htmlOutput = document.getElementById('html-output');
-    const resizer = document.getElementById('resizer');
-    const mainGrid = document.querySelector('#content-maker-view main');
 
     // --- Cover Maker Elements ---
+    const coverPreviewArea = document.getElementById('cover-preview-area');
+    const coverTypeSwitcher = document.getElementById('cover-type-switcher');
+    const sentenceInputs = document.getElementById('sentence-inputs');
+    const sentenceLayout = document.getElementById('sentence-layout');
     const coverTitleInput = document.getElementById('cover-title-input');
     const coverAuthorInput = document.getElementById('cover-author-input');
-    const coverPreviewArea = document.getElementById('cover-preview-area');
     const coverTitleOutput = document.getElementById('cover-title-output');
-    const coverAuthorOutput = document.getElementById('cover-author-output');
+    const newsInputs = document.getElementById('news-inputs');
+    const newsLayout = document.getElementById('news-layout');
+    const newsTitleInput = document.getElementById('news-title-input');
+    const newsListInput = document.getElementById('news-list-input');
+    const newsTitleOutput = document.getElementById('news-title-output');
+    const newsListOutput = document.getElementById('news-list-output');
+    const coverDate = document.getElementById('cover-date');
+    const footerAuthor = document.getElementById('footer-author');
 
     // --- State ---
-    let currentMode = 'content'; // 'content' or 'cover'
+    let currentMode = 'content';
+    let currentCoverType = 'sentence';
 
     //==================================================================
     // INITIALIZATION
@@ -37,8 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
         breaks: true,
     });
 
+    // Create a dynamic stylesheet for font sizes
+    const dynamicStyles = document.createElement('style');
+    dynamicStyles.id = 'dynamic-font-styles';
+    document.head.appendChild(dynamicStyles);
+
     //==================================================================
-    // MODE SWITCHING
+    // MODE & VIEW SWITCHING
     //==================================================================
 
     const switchMode = (mode) => {
@@ -53,12 +69,30 @@ document.addEventListener('DOMContentLoaded', () => {
             coverMakerView.style.display = 'block';
             navContentBtn.classList.remove('active');
             navCoverBtn.classList.add('active');
-            renderCover(); // Initial render for cover
+            renderCover();
+            displayDate();
         }
     };
 
+    const switchCoverType = (type) => {
+        currentCoverType = type;
+        if (type === 'sentence') {
+            sentenceInputs.style.display = 'block';
+            sentenceLayout.style.display = 'block';
+            newsInputs.style.display = 'none';
+            newsLayout.style.display = 'none';
+        } else {
+            sentenceInputs.style.display = 'none';
+            newsInputs.style.display = 'block';
+            sentenceLayout.style.display = 'none';
+            newsLayout.style.display = 'block';
+        }
+        renderCover();
+    }
+
     navContentBtn.addEventListener('click', () => switchMode('content'));
     navCoverBtn.addEventListener('click', () => switchMode('cover'));
+    coverTypeSwitcher.addEventListener('change', (e) => switchCoverType(e.target.value));
 
     //==================================================================
     // THEME & FONT
@@ -67,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const switchTheme = () => {
         const selectedTheme = themeSelect.value;
         document.body.className = `${selectedTheme}-theme`;
-        // For non-background themes like GitHub, don't apply a background image class
         if (selectedTheme.startsWith('theme_bg_')) {
             backgroundContainer.className = `bg-${selectedTheme}`;
         } else {
@@ -86,11 +119,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const updateFontStyles = () => {
+        const titleSize = titleSizeInput.value;
+        const contentSize = contentSizeInput.value;
+
+        const css = `
+            /* Content Mode Font Sizes */
+            #html-output { font-size: ${contentSize}px; }
+            #html-output h1 { font-size: ${titleSize * 0.025}em; } 
+            #html-output h2 { font-size: ${titleSize * 0.02}em; } 
+            #html-output h3 { font-size: ${titleSize * 0.0175}em; } 
+
+            /* Cover Mode Font Sizes */
+            #cover-title-output { font-size: ${titleSize}px; }
+            #news-title-output { font-size: ${titleSize}px; }
+            #news-list-output li { font-size: ${contentSize}px; }
+            #footer-author { font-size: ${contentSize * 0.8}px; }
+            .footer-promo-text { font-size: ${contentSize * 0.7}px; }
+        `;
+        dynamicStyles.textContent = css;
+    };
+
     themeSelect.addEventListener('change', switchTheme);
     fontSelect.addEventListener('change', switchFont);
+    titleSizeInput.addEventListener('input', updateFontStyles);
+    contentSizeInput.addEventListener('input', updateFontStyles);
 
     //==================================================================
-    // CONTENT MAKER LOGIC
+    // RENDER LOGIC
     //==================================================================
 
     const renderContent = () => {
@@ -100,35 +156,66 @@ document.addEventListener('DOMContentLoaded', () => {
         htmlOutput.innerHTML = html;
     };
 
+    const renderSentenceCover = () => {
+        coverTitleOutput.innerHTML = coverTitleInput.value.replace(/\n/g, '<br>');
+        footerAuthor.innerText = coverAuthorInput.value;
+    };
+
+    const renderNewsCover = () => {
+        newsTitleOutput.innerText = newsTitleInput.value;
+        const items = newsListInput.value.split('\n').filter(item => item.trim() !== '');
+        newsListOutput.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+        // Add inline style to prevent default list markers in html2canvas
+        newsListOutput.style.listStyleType = 'none';
+        footerAuthor.innerText = coverAuthorInput.value;
+    };
+
+    const renderCover = () => {
+        if (currentCoverType === 'sentence') {
+            renderSentenceCover();
+        } else {
+            renderNewsCover();
+        }
+    };
+
+    const displayDate = () => {
+        const today = new Date();
+        const y = today.getFullYear();
+        const m = String(today.getMonth() + 1).padStart(2, '0');
+        const d = String(today.getDate()).padStart(2, '0');
+        coverDate.innerText = `${y} / ${m} / ${d}`;
+    };
+
+    //==================================================================
+    // EVENT LISTENERS
+    //==================================================================
+
     markdownInput.addEventListener('input', renderContent);
+    coverTitleInput.addEventListener('input', renderCover);
+    coverAuthorInput.addEventListener('input', renderCover);
+    newsTitleInput.addEventListener('input', renderCover);
+    newsListInput.addEventListener('input', renderCover);
 
     // --- Resizer Logic ---
     const initResizer = (resizerEl, mainGridEl) => {
         let isResizing = false;
-
-        resizerEl.addEventListener('mousedown', (e) => {
+        resizerEl.addEventListener('mousedown', () => {
             isResizing = true;
             document.body.style.userSelect = 'none';
-            document.body.style.pointerEvents = 'none'; // Prevent interacting with elements underneath
-
+            document.body.style.pointerEvents = 'none';
             document.addEventListener('mousemove', onMouseMove);
             document.addEventListener('mouseup', onMouseUp);
         });
-
         const onMouseMove = (e) => {
             if (!isResizing) return;
             const mainRect = mainGridEl.getBoundingClientRect();
             const newWidth = e.clientX - mainRect.left;
             const totalWidth = mainGridEl.offsetWidth - resizerEl.offsetWidth;
-            
-            // Prevent resizing to extreme values
             if (newWidth < 100 || newWidth > totalWidth - 100) return;
-
             const leftFraction = (newWidth / totalWidth);
             const rightFraction = 1 - leftFraction;
             mainGridEl.style.gridTemplateColumns = `${leftFraction}fr ${resizerEl.offsetWidth}px ${rightFraction}fr`;
         };
-
         const onMouseUp = () => {
             isResizing = false;
             document.body.style.userSelect = '';
@@ -137,37 +224,23 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('mouseup', onMouseUp);
         };
     }
-
     initResizer(document.getElementById('resizer'), document.querySelector('#content-maker-view main'));
     initResizer(document.getElementById('cover-resizer'), document.querySelector('#cover-maker-view main'));
-
-    //==================================================================
-    // COVER MAKER LOGIC
-    //==================================================================
-
-    const renderCover = () => {
-        coverTitleOutput.innerText = coverTitleInput.value;
-        coverAuthorOutput.innerText = coverAuthorInput.value ? `By: ${coverAuthorInput.value}` : '';
-    };
-
-    coverTitleInput.addEventListener('input', renderCover);
-    coverAuthorInput.addEventListener('input', renderCover);
 
     //==================================================================
     // DOWNLOAD LOGIC
     //==================================================================
 
     const downloadImage = async (elementToCapture, filename) => {
-        const loadingOverlay = document.getElementById('loading-overlay');
         const captureWrapper = document.createElement('div');
-
         try {
             loadingOverlay.style.display = 'flex';
 
-            const computedStyle = window.getComputedStyle(elementToCapture);
-            const width = elementToCapture.scrollWidth;
+            const width = elementToCapture.offsetWidth;
+            // Use scrollHeight to ensure the entire content is captured
             const height = elementToCapture.scrollHeight;
 
+            // Style the wrapper for off-screen rendering
             Object.assign(captureWrapper.style, {
                 position: 'absolute',
                 left: '-9999px',
@@ -177,23 +250,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 overflow: 'hidden',
             });
 
+            // Clone the background and the content
             const backgroundClone = backgroundContainer.cloneNode(true);
             const contentClone = elementToCapture.cloneNode(true);
 
-            Object.assign(backgroundClone.style, { position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' });
-            Object.assign(contentClone.style, { position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', overflow: 'visible', boxSizing: 'border-box' });
+            // Style the clones for proper positioning
+            Object.assign(backgroundClone.style, {
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                filter: 'none', // Remove filter for capture
+                transform: 'none', // Remove transform for capture
+            });
+            Object.assign(contentClone.style, {
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                width: '100%',
+                // Set height to auto to allow content to expand to its full height
+                height: 'auto',
+                overflow: 'visible',
+                boxSizing: 'border-box',
+            });
 
+            // Append clones to the wrapper and the wrapper to the body
             captureWrapper.appendChild(backgroundClone);
             captureWrapper.appendChild(contentClone);
             document.body.appendChild(captureWrapper);
 
-            const dataUrl = await domtoimage.toPng(captureWrapper, {
-                width: width,
+            // Capture the wrapper
+            const canvas = await html2canvas(captureWrapper, {
+                useCORS: true,
+                scale: 2,
+                // Set the canvas height to match the wrapper height
                 height: height,
             });
 
+            // Trigger the download
             const a = document.createElement('a');
-            a.href = dataUrl;
+            a.href = canvas.toDataURL('image/png');
             a.download = filename;
             document.body.appendChild(a);
             a.click();
@@ -204,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Image capture failed! Check the console (F12) for details.\n\n${error}`);
         } finally {
             loadingOverlay.style.display = 'none';
+            // Clean up the wrapper
             if (document.body.contains(captureWrapper)) {
                 document.body.removeChild(captureWrapper);
             }
@@ -224,5 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
     switchTheme();
     switchFont();
     renderContent();
-    switchMode('content'); // Start in content mode
+    renderCover();
+    updateFontStyles();
+    switchMode('content');
 });

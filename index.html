@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小红书 Markdown 工具</title>
+    <link rel="icon" href="imgs/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -41,7 +42,52 @@
                     <option value="yansui">芫荽</option>
                     <option value="zhiyi">致一宋体</option>
                     <option value="zhuque">朱雀仿宋</option>
+                    <option value="n975_yanti">975圆体</option>
+                    
+                    <option value="sanji_shjt">三极傻黑简体</option>
+                    <option value="sanji_pmt">三极泼墨体</option>
+                    <option value="shangshou_gzt">上首光折体</option>
+                    <option value="yunfeng_jlxs">云峰静龙行书</option>
+                    <option value="youshe_bth">优设标题黑</option>
+                    <option value="youshe_syft">优设鲨鱼菲特健康体</option>
+                    <option value="neihai_zt">内海字体</option>
+                    <option value="keshilu_gbht">刻石录钢笔鹤体</option>
+                    <option value="pinru_sxt">品如手写体</option>
+                    <option value="duijiu_lhq">对酒落花前</option>
+                    <option value="youzai_zt">悠哉字体</option>
+                    <option value="shoushu_t">手书体</option>
+                    <option value="yaogunyue_one">摇滚乐 One</option>
+                    <option value="weilai_yh">未来荧黑</option>
+                    <option value="jiying_hphy">极影毁片和圆</option>
+                    <option value="jiangcheng_ld">江城律动</option>
+                    <option value="runzhi_jkbjt">润植家刻本简体</option>
+                    <option value="aide_kqjqt">爱的空气皆清甜</option>
+                    <option value="shiwei_cht">狮尾彩虹腿</option>
+                    <option value="maoken_sjh">猫啃什锦黑</option>
+                    <option value="maoken_zyt">猫啃珠圆体</option>
+                    <option value="shiwei_by">獅尾半月</option>
+                    <option value="wangqiang_sft">王强书法体</option>
+                    <option value="ruimeijia_zqpybks">瑞美加张清平硬笔楷书</option>
+                    <option value="dianying_zm">电影字幕</option>
+                    <option value="zhanku_klt">站酷快乐体</option>
+                    <option value="yanqian_yk">芫茜雅楷</option>
+                    <option value="huazhi_w">花枝丸</option>
+                    <option value="jingnan_myt">荆南麦圆体</option>
+                    <option value="luori_ymg">落日下的野玫瑰</option>
+                    <option value="qiandu_sxkt">谦度手写楷体</option>
+                    <option value="ziyuan_hyt">资源汉圆体</option>
+                    <option value="suifeng_t">随峰体</option>
+                    <option value="xiawu_szh">霞鹜尚智黑</option>
+                                        <option value="xiawu_wk_screen">霞鹜文楷屏幕版</option>
+                    <option value="xiawu_xxh">霞鹜新晰黑</option>
+                    <option value="mashan_zmb">马善政毛笔</option>
                 </select>
+
+                <label for="title-size-input">标题:</label>
+                <input type="number" id="title-size-input" value="40" min="10" max="100">
+                <label for="content-size-input">正文:</label>
+                <input type="number" id="content-size-input" value="16" min="10" max="50">
+
                 <button id="download-btn">下载图片</button>
             </div>
         </header>
@@ -66,12 +112,12 @@
                         <label><input type="radio" name="cover-type" value="news"> 新闻列表封面</label>
                     </div>
 
+                    <label for="cover-author-input">作者:</label>
+                    <input type="text" id="cover-author-input" placeholder="输入作者名" value="AI酷玩站">
+
                     <div id="sentence-inputs">
                         <label for="cover-title-input">标题:</label>
-                        <input type="text" id="cover-title-input" placeholder="输入封面主标题">
-                        
-                        <label for="cover-author-input">作者:</label>
-                        <input type="text" id="cover-author-input" placeholder="输入作者名">
+                        <textarea id="cover-title-input" rows="3" placeholder="输入封面主标题"></textarea>
                     </div>
 
                     <div id="news-inputs" style="display: none;">
@@ -83,24 +129,36 @@
                 </div>
                 <div class="resizer" id="cover-resizer"></div>
                 <div id="cover-preview-area" class="preview-area">
-                    <!-- Layout for Sentence Cover -->
-                    <div id="sentence-layout">
-                        <div id="cover-title-output"></div>
-                        <div id="cover-author-output"></div>
+                    <div class="cover-header">
+                        <img class="cover-icon" src="imgs/LOGO/logo.jpeg" alt="icon">
+                        <span id="cover-date"></span>
                     </div>
-                    <!-- Layout for News Cover -->
-                    <div id="news-layout" style="display: none;">
-                        <h2 id="news-title-output"></h2>
-                        <ul id="news-list-output"></ul>
+                    <div class="cover-content">
+                        <!-- Layout for Sentence Cover -->
+                        <div id="sentence-layout">
+                            <div id="cover-title-output"></div>
+                        </div>
+                        <!-- Layout for News Cover -->
+                        <div id="news-layout" style="display: none;">
+                            <h2 id="news-title-output"></h2>
+                            <ul id="news-list-output"></ul>
+                        </div>
                     </div>
-                    
-                    <img id="cover-qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://github.com" alt="QR Code">
+                    <div class="cover-footer">
+                        <div class="footer-left">
+                            <p id="footer-author"></p>
+                            <p class="footer-promo-text">扫描二维码</p>
+                        </div>
+                        <div class="footer-right">
+                            <img id="cover-qr-code" src="imgs/QRCode/QRcode.jpg" alt="QR Code">
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.1.6/dist/dom-to-image-more.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="js/main.js"></script>
 
     <div id="loading-overlay">

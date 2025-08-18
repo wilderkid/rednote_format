@@ -36,6 +36,45 @@
     src: url('../fonts/朱雀仿宋.ttf') format('truetype');
 }
 
+@font-face { font-family: 'n975_yanti'; src: url('../fonts/975圆体.ttf') format('truetype'); }
+@font-face { font-family: 'sanji_shjt'; src: url('../fonts/三极傻黑简体.ttf') format('truetype'); }
+@font-face { font-family: 'sanji_pmt'; src: url('../fonts/三极泼墨体.ttf') format('truetype'); }
+@font-face { font-family: 'shangshou_gzt'; src: url('../fonts/上首光折体.ttf') format('truetype'); }
+@font-face { font-family: 'yunfeng_jlxs'; src: url('../fonts/云峰静龙行书.ttf') format('truetype'); }
+@font-face { font-family: 'youshe_bth'; src: url('../fonts/优设标题黑.ttf') format('truetype'); }
+@font-face { font-family: 'youshe_syft'; src: url('../fonts/优设鲨鱼菲特健康体.ttf') format('truetype'); }
+@font-face { font-family: 'neihai_zt'; src: url('../fonts/内海字体.ttf') format('truetype'); }
+@font-face { font-family: 'keshilu_gbht'; src: url('../fonts/刻石录钢笔鹤体.ttf') format('truetype'); }
+@font-face { font-family: 'pinru_sxt'; src: url('../fonts/品如手写体.ttf') format('truetype'); }
+@font-face { font-family: 'duijiu_lhq'; src: url('../fonts/对酒落花前.ttf') format('truetype'); }
+@font-face { font-family: 'youzai_zt'; src: url('../fonts/悠哉字体.ttf') format('truetype'); }
+@font-face { font-family: 'shoushu_t'; src: url('../fonts/手书体.ttf') format('truetype'); }
+@font-face { font-family: 'yaogunyue_one'; src: url('../fonts/摇滚乐 One.ttf') format('truetype'); }
+@font-face { font-family: 'weilai_yh'; src: url('../fonts/未来荧黑.otf') format('opentype'); }
+@font-face { font-family: 'jiying_hphy'; src: url('../fonts/极影毁片和圆.ttf') format('truetype'); }
+@font-face { font-family: 'jiangcheng_ld'; src: url('../fonts/江城律动.ttf') format('truetype'); }
+@font-face { font-family: 'runzhi_jkbjt'; src: url('../fonts/润植家刻本简体.ttf') format('truetype'); }
+@font-face { font-family: 'aide_kqjqt'; src: url('../fonts/爱的空气皆清甜.ttf') format('truetype'); }
+@font-face { font-family: 'shiwei_cht'; src: url('../fonts/狮尾彩虹腿.ttf') format('truetype'); }
+@font-face { font-family: 'maoken_sjh'; src: url('../fonts/猫啃什锦黑.ttf') format('truetype'); }
+@font-face { font-family: 'maoken_zyt'; src: url('../fonts/猫啃珠圆体.ttf') format('truetype'); }
+@font-face { font-family: 'shiwei_by'; src: url('../fonts/獅尾半月-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'wangqiang_sft'; src: url('../fonts/王强书法体.ttf') format('truetype'); }
+@font-face { font-family: 'ruimeijia_zqpybks'; src: url('../fonts/瑞美加张清平硬笔楷书.ttf') format('truetype'); }
+@font-face { font-family: 'dianying_zm'; src: url('../fonts/电影字幕.TTF') format('truetype'); }
+@font-face { font-family: 'zhanku_klt'; src: url('../fonts/站酷快乐体.ttf') format('truetype'); }
+@font-face { font-family: 'yanqian_yk'; src: url('../fonts/芫茜雅楷.ttf') format('truetype'); }
+@font-face { font-family: 'huazhi_w'; src: url('../fonts/花枝丸.ttf') format('truetype'); }
+@font-face { font-family: 'jingnan_myt'; src: url('../fonts/荆南麦圆体.otf') format('opentype'); }
+@font-face { font-family: 'luori_ymg'; src: url('../fonts/落日下的野玫瑰.ttf') format('truetype'); }
+@font-face { font-family: 'qiandu_sxkt'; src: url('../fonts/谦度手写楷体.ttf') format('truetype'); }
+@font-face { font-family: 'ziyuan_hyt'; src: url('../fonts/资源汉圆体.ttf') format('truetype'); }
+@font-face { font-family: 'suifeng_t'; src: url('../fonts/随峰体.ttf') format('truetype'); }
+@font-face { font-family: 'xiawu_szh'; src: url('../fonts/霞鹜尚智黑.ttf') format('truetype'); }
+@font-face { font-family: 'xiawu_wk_screen';     src: url('../fonts/霞鹜文楷屏幕版.ttf') format('truetype'); }
+@font-face { font-family: 'xiawu_xxh'; src: url('../fonts/霞鹜新晰黑.ttf') format('truetype'); }
+@font-face { font-family: 'mashan_zmb'; src: url('../fonts/马善政毛笔.ttf') format('truetype'); }
+
 /* --- FONT CLASSES --- */
 .preview-area.font-hanchan { font-family: 'hanchan', sans-serif !important; }
 .preview-area.font-huiwen { font-family: 'huiwen', sans-serif !important; }
@@ -46,6 +85,44 @@
 .preview-area.font-yansui { font-family: 'yansui', sans-serif !important; }
 .preview-area.font-zhiyi { font-family: 'zhiyi', sans-serif !important; }
 .preview-area.font-zhuque { font-family: 'zhuque', sans-serif !important; }
+.preview-area.font-n975_yanti { font-family: 'n975_yanti', sans-serif !important; }
+.preview-area.font-sanji_shjt { font-family: 'sanji_shjt', sans-serif !important; }
+.preview-area.font-sanji_pmt { font-family: 'sanji_pmt', sans-serif !important; }
+.preview-area.font-shangshou_gzt { font-family: 'shangshou_gzt', sans-serif !important; }
+.preview-area.font-yunfeng_jlxs { font-family: 'yunfeng_jlxs', sans-serif !important; }
+.preview-area.font-youshe_bth { font-family: 'youshe_bth', sans-serif !important; }
+.preview-area.font-youshe_syft { font-family: 'youshe_syft', sans-serif !important; }
+.preview-area.font-neihai_zt { font-family: 'neihai_zt', sans-serif !important; }
+.preview-area.font-keshilu_gbht { font-family: 'keshilu_gbht', sans-serif !important; }
+.preview-area.font-pinru_sxt { font-family: 'pinru_sxt', sans-serif !important; }
+.preview-area.font-duijiu_lhq { font-family: 'duijiu_lhq', sans-serif !important; }
+.preview-area.font-youzai_zt { font-family: 'youzai_zt', sans-serif !important; }
+.preview-area.font-shoushu_t { font-family: 'shoushu_t', sans-serif !important; }
+.preview-area.font-yaogunyue_one { font-family: 'yaogunyue_one', sans-serif !important; }
+.preview-area.font-weilai_yh { font-family: 'weilai_yh', sans-serif !important; }
+.preview-area.font-jiying_hphy { font-family: 'jiying_hphy', sans-serif !important; }
+.preview-area.font-jiangcheng_ld { font-family: 'jiangcheng_ld', sans-serif !important; }
+.preview-area.font-runzhi_jkbjt { font-family: 'runzhi_jkbjt', sans-serif !important; }
+.preview-area.font-aide_kqjqt { font-family: 'aide_kqjqt', sans-serif !important; }
+.preview-area.font-shiwei_cht { font-family: 'shiwei_cht', sans-serif !important; }
+.preview-area.font-maoken_sjh { font-family: 'maoken_sjh', sans-serif !important; }
+.preview-area.font-maoken_zyt { font-family: 'maoken_zyt', sans-serif !important; }
+.preview-area.font-shiwei_by { font-family: 'shiwei_by', sans-serif !important; }
+.preview-area.font-wangqiang_sft { font-family: 'wangqiang_sft', sans-serif !important; }
+.preview-area.font-ruimeijia_zqpybks { font-family: 'ruimeijia_zqpybks', sans-serif !important; }
+.preview-area.font-dianying_zm { font-family: 'dianying_zm', sans-serif !important; }
+.preview-area.font-zhanku_klt { font-family: 'zhanku_klt', sans-serif !important; }
+.preview-area.font-yanqian_yk { font-family: 'yanqian_yk', sans-serif !important; }
+.preview-area.font-huazhi_w { font-family: 'huazhi_w', sans-serif !important; }
+.preview-area.font-jingnan_myt { font-family: 'jingnan_myt', sans-serif !important; }
+.preview-area.font-luori_ymg { font-family: 'luori_ymg', sans-serif !important; }
+.preview-area.font-qiandu_sxkt { font-family: 'qiandu_sxkt', sans-serif !important; }
+.preview-area.font-ziyuan_hyt { font-family: 'ziyuan_hyt', sans-serif !important; }
+.preview-area.font-suifeng_t { font-family: 'suifeng_t', sans-serif !important; }
+.preview-area.font-xiawu_szh { font-family: 'xiawu_szh', sans-serif !important; }
+.preview-area.font-xiawu_wk_screen { font-family: 'xiawu_wk_screen', sans-serif !important; }
+.preview-area.font-xiawu_xxh { font-family: 'xiawu_xxh', sans-serif !important; }
+.preview-area.font-mashan_zmb { font-family: 'mashan_zmb', sans-serif !important; }
 
 
 body {
@@ -280,14 +357,18 @@ main {
     font-weight: 500;
 }
 
-.cover-inputs input[type="text"] {
-    width: 100%;
+.cover-inputs input[type="text"],
+.cover-inputs textarea {
+    width: 80%;
+    display: block;
+    margin: 0 auto 10px auto;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 15px;
     box-sizing: border-box;
     transition: all 0.3s ease;
+    font-family: inherit;
 }
 
 .cover-inputs input[type="text"]:focus {
@@ -317,28 +398,110 @@ main {
 #cover-preview-area {
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Distribute space between header, content, footer */
+    gap: 0;
+    height: 100%;
+    padding: 20px;
+    position: relative;
+}
+
+.cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    flex-shrink: 0;
+}
+
+.cover-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#cover-date {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.cover-content {
+    flex-grow: 1; /* Allow content to take up available space */
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    padding: 20px 0;
 }
 
-#cover-title-output {
-    font-size: 2.5em;
+.cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    flex-shrink: 0;
+}
+
+.footer-left p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+#footer-author {
     font-weight: bold;
+    font-size: 0.9em;
 }
 
-#cover-author-output {
-    font-size: 1.2em;
-    font-style: italic;
+.footer-promo-text {
+    font-size: 0.75em;
+    color: #888;
 }
 
 #cover-qr-code {
-    width: 100px;
-    height: 100px;
-    border: 5px solid white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 55px; /* Smaller QR Code */
+    height: 55px;
+    border: 4px solid white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#sentence-layout, #news-layout {
+    width: 100%;
+}
+
+#news-layout {
+    text-align: left;
+}
+
+#news-title-output {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#news-list-output {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#news-list-output li {
+    padding-left: 1.3em;
+    position: relative;
+    margin-bottom: 10px;
+    font-size: 1em;
+    list-style-type: none !important; /* Add this line to remove the black squares */
+}
+
+#news-list-output li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #ff7676;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1;
 }
 
 .preview-area::-webkit-scrollbar {
@@ -1469,7 +1632,6 @@ main {
     background-color: #44CF6C;
     padding: 8px 18px;
     border-radius: 20px 5px;
-    display: inline-block;
     font-weight: bold;
     box-shadow: 2px 2px 0px #C3E6CB;
     margin: 1.3em 0 0.8em;
@@ -1612,7 +1774,7 @@ main {
 .theme_bg_7-theme .preview-area a {
     color: #FF6F61;
     text-decoration: none;
-    background-image: linear-gradient(transparent 60%, rgba(255, 111, 97, 0.3) 40%);
+    border-bottom: 2px solid rgba(255, 111, 97, 0.3);
     padding: 0 2px;
     transition: all 0.3s ease;
 }
