@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试LOGO位置</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .test-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            flex-shrink: 0;
+            width: 100%;
+            background: #f0f0f0;
+        }
+        
+        .test-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        
+        .test-date {
+            font-size: 0.8em;
+            color: #666;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="cover-preview-area" class="preview-area">
+            <div class="cover-header">
+                <img class="cover-icon" src="imgs/LOGO/logo.jpeg" alt="icon">
+                <span id="cover-date">2023 / 08 / 18</span>
+            </div>
+        </div>
+        
+        <h2>测试: flex-start 应该让LOGO在左侧</h2>
+        <div class="test-header">
+            <img class="test-icon" src="imgs/LOGO/logo.jpeg" alt="icon">
+            <span class="test-date">2023 / 08 / 18</span>
+        </div>
+    </div>
+</body>
+</html>
