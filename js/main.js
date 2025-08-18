@@ -232,65 +232,48 @@ document.addEventListener('DOMContentLoaded', () => {
     //==================================================================
 
     const downloadImage = async (elementToCapture, filename) => {
-        const captureWrapper = document.createElement('div');
         try {
             loadingOverlay.style.display = 'flex';
 
-            const width = elementToCapture.offsetWidth;
-            // Use scrollHeight to ensure the entire content is captured
-            const height = elementToCapture.scrollHeight;
+            // Get the computed style of the background container
+            const backgroundContainer = document.getElementById('background-container');
 
-            // Style the wrapper for off-screen rendering
-            Object.assign(captureWrapper.style, {
-                position: 'absolute',
-                left: '-9999px',
-                top: '0',
-                width: `${width}px`,
-                height: `${height}px`,
-                overflow: 'hidden',
-            });
-
-            // Clone the background and the content
-            const backgroundClone = backgroundContainer.cloneNode(true);
-            const contentClone = elementToCapture.cloneNode(true);
-
-            // Style the clones for proper positioning
-            Object.assign(backgroundClone.style, {
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                width: '100%',
-                height: '100%',
-                filter: 'none', // Remove filter for capture
-                transform: 'none', // Remove transform for capture
-            });
-            Object.assign(contentClone.style, {
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                width: '100%',
-                // Set height to auto to allow content to expand to its full height
-                height: 'auto',
-                overflow: 'visible',
-                boxSizing: 'border-box',
-            });
-
-            // Append clones to the wrapper and the wrapper to the body
-            captureWrapper.appendChild(backgroundClone);
-            captureWrapper.appendChild(contentClone);
-            document.body.appendChild(captureWrapper);
-
-            // Capture the wrapper
-            const canvas = await html2canvas(captureWrapper, {
+            // Create a canvas for the background
+            const backgroundCanvas = await html2canvas(backgroundContainer, {
                 useCORS: true,
                 scale: 2,
-                // Set the canvas height to match the wrapper height
-                height: height,
+                width: elementToCapture.offsetWidth,
+                height: elementToCapture.scrollHeight,
+                x: 0,
+                y: 0,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: elementToCapture.offsetWidth,
+                windowHeight: elementToCapture.scrollHeight,
             });
+
+            // Create a canvas for the content
+            const contentCanvas = await html2canvas(elementToCapture, {
+                useCORS: true,
+                scale: 2,
+                backgroundColor: null, // Capture with transparent background
+            });
+
+            // Create a final canvas to merge the two
+            const finalCanvas = document.createElement('canvas');
+            const ctx = finalCanvas.getContext('2d');
+            finalCanvas.width = contentCanvas.width;
+            finalCanvas.height = contentCanvas.height;
+
+            // Draw the background canvas first
+            ctx.drawImage(backgroundCanvas, 0, 0, finalCanvas.width, finalCanvas.height);
+
+            // Draw the content canvas on top
+            ctx.drawImage(contentCanvas, 0, 0, finalCanvas.width, finalCanvas.height);
 
             // Trigger the download
             const a = document.createElement('a');
-            a.href = canvas.toDataURL('image/png');
+            a.href = finalCanvas.toDataURL('image/png');
             a.download = filename;
             document.body.appendChild(a);
             a.click();
@@ -301,10 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Image capture failed! Check the console (F12) for details.\n\n${error}`);
         } finally {
             loadingOverlay.style.display = 'none';
-            // Clean up the wrapper
-            if (document.body.contains(captureWrapper)) {
-                document.body.removeChild(captureWrapper);
-            }
         }
     };
 
