@@ -64,7 +64,7 @@ RedNote 是一个多功能的在线排版工具，旨在帮助用户轻松地将
 
 ## 🎨 如何自定义
 
-你可以轻松地添加自己的主题或字体。
+你可以轻松地添加自己的主题或字体，也可以更换 Logo 和二维码。
 
 ### 添加新字体 (示例)
 
@@ -85,5 +85,27 @@ RedNote 是一个多功能的在线排版工具，旨在帮助用户轻松地将
     <option value="my-font-family">我的新字体</option>
     ```
 
+### 更换 Logo
+
+1.  准备好你的新 Logo 图片文件 (建议尺寸为正方形，例如 100x100 像素)。
+2.  将新 Logo 文件放入 `imgs/LOGO/` 目录，并可以替换掉原有的 `logo.jpeg` 文件，或者保留它并使用新文件名 (例如 `my-logo.png`)。
+3.  打开 `index.html` 文件，找到 `<img class="cover-icon" src="imgs/LOGO/logo.jpeg" alt="icon">` 这一行。
+4.  修改 `src` 属性为你新 Logo 文件的路径：
+    ```html
+    <img class="cover-icon" src="imgs/LOGO/my-logo.png" alt="我的图标">
+    ```
+    *(如果你替换了原文件，则只需确认文件名正确即可)*
+
+### 更换二维码
+
+1.  准备好你的新二维码图片文件 (建议尺寸为正方形，例如 200x200 像素)。
+2.  将新二维码文件放入 `imgs/QRCode/` 目录，并可以替换掉原有的 `QRcode.jpg` 文件，或者保留它并使用新文件名 (例如 `my-qrcode.png`)。
+3.  打开 `index.html` 文件，找到 `<img id="cover-qr-code" src="imgs/QRCode/QRcode.jpg" alt="QR Code">` 这一行。
+4.  修改 `src` 属性为你新二维码文件的路径：
+    ```html
+    <img id="cover-qr-code" src="imgs/QRCode/my-qrcode.png" alt="我的二维码">
+    ```
+    *(如果你替换了原文件，则只需确认文件名正确即可)*
+
 ---
-现在，重新加载页面，你就可以在下拉菜单中看到并使用你添加的新字体了。
+现在，重新加载页面，你就可以看到新的 Logo 和二维码了。
